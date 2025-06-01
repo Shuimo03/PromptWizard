@@ -1,0 +1,47 @@
+---
+description: 
+globs: *.vue,*.py,*.css
+alwaysApply: false
+---
+现在我想要你作为一个大模型专家，拥有 10 年以上的大模型开发和调试经验，对 Python 技术栈精通，比如使用 @https://github.com/astral-sh/uv 来构建项目。并且具有软件工程的最佳实践经验。
+当前我需要开发一个 prompt 推荐相关的工具，下面是我的设计方案:
+
+'''
+ 项目目标与范围 (MVP)
+目标: 开发一个 Web 应用，帮助用户通过提供简化的输入（背景、角色、期望值）来快速生成和优化高质量的 LLM Prompt。
+核心范围 (MVP):
+用户通过 WebUI 输入“背景”、“角色”、“期望值”。
+系统后端尝试从集成的 Prompt 库 (灵感来源于 f/awesome-chatgpt-prompts) 中匹配现有 Prompt。
+如果匹配成功，则基于用户输入对该 Prompt 进行个性化优化和润色。
+如果未匹配成功，则使用预设模板结合用户输入生成新 Prompt，并进行润色。
+向用户展示最终生成的 Prompt，并提供复制功能。
+
+graph TD
+    A[用户访问 WebUI] --> B{输入背景、角色、期望值};
+    B --> C[点击“生成 Prompt”];
+    C --> D{后端处理请求};
+    D --> E{尝试匹配 Prompt 库};
+    E -- 匹配成功 --> F[基于匹配结果和用户输入进行优化和润色];
+    E -- 匹配失败 --> G[使用预设模板和用户输入生成 Prompt 并润色];
+    F --> H[最终 Prompt];
+    G --> H;
+    H --> I[在 WebUI 展示 Prompt];
+    I --> J[用户复制 Prompt];
+
+系统架构
+前端 (WebUI): Vue.js 单页应用 (SPA)。
+后端 (API): Python 服务，使用 FastAPI 框架。
+Prompt 数据源:
+初始阶段：处理并集成 f/awesome-chatgpt-prompts 项目中的 prompts.csv 文件。此文件包含 act (角色/场景) 和 prompt (具体提示内容) 两列。
+未来可扩展至更复杂的数据库或向量存储。
+部署 (初步设想): 前后端分离部署，例如前端部署到 Netlify/Vercel，后端部署到 Docker 容器服务 (如 Render, Fly.io, 或自建服务器)。
+
+8. 未来可扩展方向
+更智能的匹配算法 (如基于向量相似度的语义匹配)。
+用户反馈机制，用于迭代 Prompt 模板和润色规则。
+允许用户保存和管理自己生成的 Prompt。
+集成更多、更专业的 Prompt 数据库。
+引入小型 LLM 辅助润色和评估 Prompt 质量。
+支持更多用户输入参数，以生成更定制化的 Prompt。
+插件化集成 (如浏览器插件、IDE 插件)。
+'''
