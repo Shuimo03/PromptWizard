@@ -1,5 +1,5 @@
 <script setup>
-import PromptGenerator from './components/PromptGenerator.vue'
+// 移除 PromptGenerator 导入，因为现在通过路由加载
 </script>
 
 <template>
@@ -16,7 +16,7 @@ import PromptGenerator from './components/PromptGenerator.vue'
       
       <a-layout-content class="p-4 sm:p-6 flex-1">
         <div class="container mx-auto max-w-4xl">
-          <PromptGenerator />
+          <router-view />
         </div>
       </a-layout-content>
     </a-layout>

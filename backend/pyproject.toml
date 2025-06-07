@@ -10,3 +10,12 @@ dependencies = [
     "python-dotenv>=1.1.0",
     "uvicorn[standard]>=0.34.3",
 ]
+
+[tool.uvicorn]
+app = "app.main:app"
+host = "0.0.0.0"
+port = 8000
+reload = true
+
+[project.scripts]
+dev = "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"

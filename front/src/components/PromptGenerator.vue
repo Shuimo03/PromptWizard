@@ -7,160 +7,41 @@
         <a-form-item label="选择角色" name="role" class="mb-4 sm:mb-6">
           <a-select
             v-model:value="formData.role"
-            placeholder="🔍 搜索角色类型、专业领域或关键词..."
-            :size="isMobile ? 'middle' : 'large'"
-            show-search
-            allow-clear
-            :filter-option="filterOption"
-            :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
+            placeholder="请选择一个角色"
+            class="w-full"
           >
-            <!-- 编程开发类 -->
-            <a-select-opt-group label="💻 编程开发类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['professional-coder', 'fullstack-developer', 'ai-developer', 'devops-engineer'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
+            <a-select-opt-group label="编程开发类">
+              <a-select-option value="software_engineer">👨‍💻 专业编程专家</a-select-option>
+              <a-select-option value="fullstack_developer">🔧全栈开发工程师</a-select-option>
+              <a-select-option value="ai_developer">🤖AI 开发工程师</a-select-option>
+              <a-select-option value="devops_engineer">⚙️DevOps 工程师</a-select-option>
             </a-select-opt-group>
-            
-            <!-- 写作创作类 -->
-            <a-select-opt-group label="✏️ 写作创作类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['academic-writer', 'all-around-writer', 'creative-writer', 'copywriter'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
+            <a-select-opt-group label="写作创作类">
+              <a-select-option value="academic_writer">👌学术写作专家</a-select-option>
+              <a-select-option value="content_writer">✏️内容创作者</a-select-option>
+              <a-select-option value="copywriter">📝文案策划师</a-select-option>
             </a-select-opt-group>
-            
-            <!-- 分析咨询类 -->
-            <a-select-opt-group label="📊 分析咨询类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['data-analyst', 'business-analyst', 'financial-advisor', 'market-researcher'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
+            <a-select-opt-group label="产品设计类">
+              <a-select-option value="product_manager">📱产品经理</a-select-option>
+              <a-select-option value="ui_designer">🎨UI 设计师</a-select-option>
+              <a-select-option value="ux_researcher">👥用户体验研究员</a-select-option>
             </a-select-opt-group>
-            
-            <!-- 教育培训类 -->
-            <a-select-opt-group label="🎓 教育培训类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['tutor', 'language-teacher', 'skill-trainer'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
+            <a-select-opt-group label="数据分析类">
+              <a-select-option value="data_scientist">📊数据科学家</a-select-option>
+              <a-select-option value="data_analyst">📊数据分析师</a-select-option>
+              <a-select-option value="business_analyst">💼业务分析师</a-select-option>
             </a-select-opt-group>
-            
-            <!-- 设计创意类 -->
-            <a-select-opt-group label="🎨 设计创意类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['ui-designer', 'graphic-designer', 'brand-strategist'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
+            <a-select-opt-group label="市场营销类">
+              <a-select-option value="marketing_specialist">🎯市场营销专家</a-select-option>
+              <a-select-option value="seo_expert">🔍SEO 专家</a-select-option>
+              <a-select-option value="growth_hacker">📈增长黑客</a-select-option>
             </a-select-opt-group>
-            
-            <!-- 专业服务类 -->
-            <a-select-opt-group label="🌐 专业服务类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['translator', 'legal-advisor', 'career-coach', 'health-consultant'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
+            <a-select-opt-group label="其他专业类">
+              <a-select-option value="legal_advisor">⚖️法律顾问</a-select-option>
+              <a-select-option value="financial_advisor">💰财务顾问</a-select-option>
+              <a-select-option value="career_coach">🚀职业规划师</a-select-option>
             </a-select-opt-group>
-            
-            <!-- 技术专家类 -->
-            <a-select-opt-group label="🔧 技术专家类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['seo-expert', 'security-expert', 'blockchain-expert'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
-            </a-select-opt-group>
-            
-            <!-- 研究学术类 -->
-            <a-select-opt-group label="🔬 研究学术类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['researcher', 'academic-reviewer', 'patent-analyst'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
-            </a-select-opt-group>
-            
-            <!-- 创业商业类 -->
-            <a-select-opt-group label="🚀 创业商业类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['startup-mentor', 'product-manager', 'growth-hacker'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
-            </a-select-opt-group>
-            
-            <!-- 生活助手类 -->
-            <a-select-opt-group label="🌟 生活助手类">
-              <a-select-option
-                v-for="role in predefinedRoles.filter(r => ['life-coach', 'travel-planner', 'cooking-expert'].includes(r.value))"
-                :key="role.value"
-                :value="role.value"
-              >
-                <div class="flex items-center">
-                  <a-tag :color="role.color" class="mr-2 text-xs">{{ role.tag }}</a-tag>
-                  <span class="text-sm sm:text-base">{{ role.label }}</span>
-                </div>
-              </a-select-option>
-            </a-select-opt-group>
-            
-            <!-- 自定义选项 -->
-            <a-select-option value="custom" class="custom-role-option">
-              <div class="flex items-center text-blue-600 font-medium">
-                <PlusOutlined class="mr-2" />
-                <span class="text-sm sm:text-base">🎯 自定义专业角色</span>
-              </div>
-            </a-select-option>
+            <a-select-option value="custom">🤖自定义角色</a-select-option>
           </a-select>
           
           <!-- 自定义角色输入 -->
@@ -237,11 +118,20 @@
                   </template>
                   <span v-if="!isMobile">润色</span>
                 </a-button>
+                <a-button :size="isMobile ? 'small' : 'middle'" @click="toggleView">
+                  <template #icon>
+                    <component :is="isMarkdownView ? 'CodeOutlined' : 'EyeOutlined'" />
+                  </template>
+                  <span v-if="!isMobile">{{ isMarkdownView ? '源码' : '预览' }}</span>
+                </a-button>
               </a-space>
             </template>
             
             <div class="prompt-output">
-              <pre class="whitespace-pre-wrap leading-relaxed" 
+              <!-- Markdown预览模式 -->
+              <div v-if="isMarkdownView" class="markdown-body" v-html="renderedMarkdown"></div>
+              <!-- 源码模式 -->
+              <pre v-else class="whitespace-pre-wrap leading-relaxed code-view" 
                    :class="isMobile ? 'text-xs' : 'text-sm'">{{ generatedPrompt }}</pre>
             </div>
           </a-card>
@@ -259,14 +149,285 @@ import {
   PlusOutlined, 
   CopyOutlined, 
   EditOutlined,
-  ThunderboltOutlined 
+  ThunderboltOutlined,
+  EyeOutlined,
+  CodeOutlined
 } from '@ant-design/icons-vue'
-import MagicWandOutlined from './icons/MagicWandOutlined.vue'
+import { promptService } from '../api/prompt'
+import MarkdownIt from 'markdown-it'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github.css'
+import 'github-markdown-css/github-markdown.css'
+
+// 初始化markdown-it
+const md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true,
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        const highlighted = hljs.highlight(str, { language: lang }).value
+        // 添加行号和改进的代码块样式
+        return `<div class="code-block-wrapper">
+                  <div class="code-block-header">
+                    <span class="code-lang">${lang}</span>
+                  </div>
+                  <pre class="hljs"><code>${highlighted}</code></pre>
+                </div>`
+      } catch (__) {}
+    }
+    // 如果没有指定语言或者高亮失败，仍然提供基本的代码块样式
+    return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`
+  }
+})
+
+// 预定义的角色模板
+const roleTemplates = {
+  // 编程开发类
+  software_engineer: {
+    title: '专业编程专家',
+    requirements: [
+      '使用最佳实践和行业标准',
+      '提供清晰的代码示例和注释',
+      '考虑性能、安全性和可维护性',
+      '解释技术选择的原因'
+    ]
+  },
+  fullstack_developer: {
+    title: '全栈开发工程师',
+    requirements: [
+      '前后端技术栈的最佳实践',
+      '系统架构和数据流设计',
+      '安全性和性能优化',
+      '开发工具和部署流程'
+    ]
+  },
+  ai_developer: {
+    title: 'AI 开发工程师',
+    requirements: [
+      '机器学习模型的选择和应用',
+      '数据预处理和特征工程',
+      '模型训练和优化策略',
+      '模型部署和监控方案'
+    ]
+  },
+  devops_engineer: {
+    title: 'DevOps 工程师',
+    requirements: [
+      '自动化部署和持续集成',
+      '监控和日志管理',
+      '性能优化和故障排查',
+      '安全性和可扩展性'
+    ]
+  },
+
+  // 写作创作类
+  academic_writer: {
+    title: '学术写作专家',
+    requirements: [
+      '严谨的学术写作规范',
+      '清晰的论证结构',
+      '准确的文献引用',
+      '专业术语的准确使用'
+    ]
+  },
+  content_writer: {
+    title: '内容创作者',
+    requirements: [
+      '吸引人的内容结构',
+      'SEO 优化和关键词策略',
+      '目标受众分析',
+      '内容营销策略'
+    ]
+  },
+  copywriter: {
+    title: '文案策划师',
+    requirements: [
+      '品牌调性把握',
+      '吸引力文案创作',
+      '用户心理洞察',
+      '转化率优化'
+    ]
+  },
+
+  // 产品设计类
+  product_manager: {
+    title: '产品经理',
+    requirements: [
+      '用户需求分析',
+      '产品规划和路线图',
+      '功能设计和优先级',
+      '数据驱动决策'
+    ]
+  },
+  ui_designer: {
+    title: 'UI 设计师',
+    requirements: [
+      '视觉设计原则',
+      '用户界面交互设计',
+      '设计系统和规范',
+      '原型设计和测试'
+    ]
+  },
+  ux_researcher: {
+    title: '用户体验研究员',
+    requirements: [
+      '用户研究方法',
+      '用户行为分析',
+      '可用性测试',
+      '研究报告和建议'
+    ]
+  },
+
+  // 数据分析类
+  data_scientist: {
+    title: '数据科学家',
+    requirements: [
+      '数据分析方法论',
+      '统计模型和算法',
+      '数据可视化',
+      '业务洞察和建议'
+    ]
+  },
+  data_analyst: {
+    title: '数据分析师',
+    requirements: [
+      '数据收集和清洗',
+      '数据分析和挖掘',
+      '报告撰写和展示',
+      '数据驱动决策建议'
+    ]
+  },
+  business_analyst: {
+    title: '业务分析师',
+    requirements: [
+      '业务流程分析',
+      '需求收集和管理',
+      '解决方案设计',
+      'ROI 分析和评估'
+    ]
+  },
+
+  // 市场营销类
+  marketing_specialist: {
+    title: '市场营销专家',
+    requirements: [
+      '市场策略制定',
+      '营销活动策划',
+      '效果分析和优化',
+      '竞品分析和市场洞察'
+    ]
+  },
+  seo_expert: {
+    title: 'SEO 专家',
+    requirements: [
+      '搜索引擎优化策略',
+      '关键词研究和分析',
+      '内容优化建议',
+      '技术 SEO 优化'
+    ]
+  },
+  growth_hacker: {
+    title: '增长黑客',
+    requirements: [
+      '用户增长策略',
+      '转化率优化',
+      '数据分析和实验',
+      '渠道策略'
+    ]
+  },
+
+  // 其他专业类
+  legal_advisor: {
+    title: '法律顾问',
+    requirements: [
+      '法律风险分析',
+      '合规性建议',
+      '文件审查和修改',
+      '法律解决方案'
+    ]
+  },
+  financial_advisor: {
+    title: '财务顾问',
+    requirements: [
+      '财务分析和规划',
+      '风险评估和管理',
+      '投资策略建议',
+      '财务报告解读'
+    ]
+  },
+  career_coach: {
+    title: '职业规划师',
+    requirements: [
+      '职业发展规划',
+      '能力评估和建议',
+      '简历和面试指导',
+      '职业转型建议'
+    ]
+  },
+
+  // 自定义角色模板
+  custom: {
+    title: '专业顾问',
+    requirements: [
+      '专业知识应用',
+      '问题分析和解决',
+      '清晰的沟通表达',
+      '实用的建议和方案'
+    ]
+  }
+}
+
+// 生成本地模板
+const generateTemplate = (role, background, expectation, customRole = '') => {
+  const template = roleTemplates[role]
+  if (!template) return ''
+
+  // 如果是自定义角色，使用用户输入的角色名称
+  const roleTitle = role === 'custom' ? customRole : template.title
+
+  let prompt = `# 角色设定
+你是一位${roleTitle}，在相关领域有深厚的专业知识和实践经验。
+
+# 任务目标
+${expectation}`
+
+  if (background) {
+    prompt += `\n\n# 补充信息
+${background}`
+  }
+
+  prompt += `\n\n# 专业要求
+${template.requirements.map((req, index) => `${index + 1}. ${req}`).join('\n')}
+
+# 输出格式
+请按照以下结构组织你的专业回答：
+
+## 📋 任务理解
+- 对需求的分析和理解
+- 关键要点和注意事项
+
+## 🎯 解决方案
+- 详细的实施步骤或内容
+- 具体的方法和技巧
+
+## 💡 专业建议
+- 最佳实践和优化建议
+- 潜在风险和应对措施
+
+## 📚 相关资源（如适用）
+- 推荐的工具、方法或参考资料
+
+请开始你的专业回答：`
+
+  return prompt
+}
 
 // 响应式数据
 const formData = reactive({
   role: '',
-  customRole: '',
+  customRole: '',  // 添加自定义角色字段
   background: '',
   expectation: ''
 })
@@ -364,154 +525,39 @@ const filterOption = (input, option) => {
   )
 }
 
-// 生成Prompt函数
-const generatePrompt = async () => {
-  // 只验证期望目标是否填写，补充信息为可选
-  if (!formData.expectation.trim()) {
-    message.warning('请填写期望目标')
-    return
-  }
-
-  // 验证角色选择
+// 生成Prompt
+const generatePrompt = () => {
   if (!formData.role) {
-    message.warning('请选择一个角色')
+    message.error('请选择角色')
+    return
+  }
+  if (formData.role === 'custom' && !formData.customRole) {
+    message.error('请输入自定义角色名称')
+    return
+  }
+  if (!formData.expectation) {
+    message.error('请输入期望目标')
     return
   }
 
-  let roleText = ''
-  if (formData.role === 'custom') {
-    if (!formData.customRole.trim()) {
-      message.warning('请输入自定义角色')
-      return
-    }
-    roleText = formData.customRole.trim()
-  } else {
-    const selectedRole = predefinedRoles.value.find(r => r.value === formData.role)
-    if (selectedRole) {
-      // 正确处理emoji和角色名称
-      roleText = selectedRole.label.replace(/^[\u{1F000}-\u{1F6FF}]|^[\u{1F900}-\u{1F9FF}]|^[\u{2600}-\u{26FF}]|^[\u{2700}-\u{27BF}]|^[\u{1F680}-\u{1F6FF}]|^[\u{1F1E0}-\u{1F1FF}]/gu, '').trim()
-    } else {
-      roleText = '专业助手'
-    }
+  console.log('Generating template for role:', formData.role)
+
+  // 先生成本地模板
+  const template = generateTemplate(
+    formData.role,
+    formData.background,
+    formData.expectation,
+    formData.customRole
+  )
+
+  if (!template) {
+    console.error('Template generation failed. Role:', formData.role)
+    message.error('生成模板失败，请重试')
+    return
   }
 
-  isGenerating.value = true
-  
-  try {
-    // 模拟API调用延迟
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    
-    // 根据角色类型智能生成更详细的Prompt
-    const roleCategory = getRoleCategory(formData.role)
-    const prompt = generateIntelligentPrompt(roleText, formData.expectation.trim(), formData.background.trim(), roleCategory)
-
-    generatedPrompt.value = prompt
-    message.success('🎉 Prompt 生成成功！')
-  } catch (error) {
-    message.error('生成失败，请重试')
-  } finally {
-    isGenerating.value = false
-  }
-}
-
-// 获取角色类别
-const getRoleCategory = (roleValue) => {
-  const categories = {
-    'programming': ['professional-coder', 'fullstack-developer', 'ai-developer', 'devops-engineer'],
-    'writing': ['academic-writer', 'all-around-writer', 'creative-writer', 'copywriter'],
-    'analysis': ['data-analyst', 'business-analyst', 'financial-advisor', 'market-researcher'],
-    'education': ['tutor', 'language-teacher', 'skill-trainer'],
-    'design': ['ui-designer', 'graphic-designer', 'brand-strategist'],
-    'service': ['translator', 'legal-advisor', 'career-coach', 'health-consultant'],
-    'tech': ['seo-expert', 'security-expert', 'blockchain-expert'],
-    'research': ['researcher', 'academic-reviewer', 'patent-analyst'],
-    'business': ['startup-mentor', 'product-manager', 'growth-hacker'],
-    'lifestyle': ['life-coach', 'travel-planner', 'cooking-expert']
-  }
-  
-  for (const [category, roles] of Object.entries(categories)) {
-    if (roles.includes(roleValue)) return category
-  }
-  return 'general'
-}
-
-// 智能生成Prompt
-const generateIntelligentPrompt = (roleText, expectation, background, category) => {
-  // 根据角色类别定制专业要求
-  const categoryRequirements = {
-    'programming': [
-      '使用最佳实践和行业标准',
-      '提供清晰的代码示例和注释',
-      '考虑性能、安全性和可维护性',
-      '解释技术选择的原因'
-    ],
-    'writing': [
-      '确保内容结构清晰、逻辑连贯',
-      '使用适当的语言风格和语调',
-      '注意目标受众和使用场景',
-      '提供具体的写作技巧和建议'
-    ],
-    'analysis': [
-      '基于数据和事实进行分析',
-      '提供清晰的分析框架和方法',
-      '使用图表或可视化说明（如适用）',
-      '给出可执行的建议和结论'
-    ],
-    'design': [
-      '遵循设计原则和用户体验最佳实践',
-      '考虑目标用户和使用场景',
-      '提供具体的设计建议和解决方案',
-      '解释设计决策的依据'
-    ],
-    'general': [
-      '提供专业、准确的信息',
-      '使用清晰、易懂的表达方式',
-      '给出实用的建议和指导',
-      '确保内容的完整性和实用性'
-    ]
-  }
-
-  const requirements = categoryRequirements[category] || categoryRequirements['general']
-
-  let prompt = `# 角色设定
-你是一位经验丰富的${roleText}，在相关领域有深厚的专业知识和实践经验。
-
-# 任务目标
-${expectation}`
-
-  if (background) {
-    prompt += `
-
-# 补充信息
-${background}`
-  }
-
-  prompt += `
-
-# 专业要求
-${requirements.map((req, index) => `${index + 1}. ${req}`).join('\n')}
-
-# 输出格式
-请按照以下结构组织你的专业回答：
-
-## 📋 任务理解
-- 对需求的分析和理解
-- 关键要点和注意事项
-
-## 🎯 解决方案
-- 详细的实施步骤或内容
-- 具体的方法和技巧
-
-## 💡 专业建议
-- 最佳实践和优化建议
-- 潜在风险和应对措施
-
-## 📚 相关资源（如适用）
-- 推荐的工具、方法或参考资料
-
-请开始你的专业回答：`
-
-  return prompt
+  generatedPrompt.value = template
+  message.success('Prompt 模板生成成功！')
 }
 
 // 复制Prompt
@@ -530,79 +576,43 @@ const refinePrompt = async () => {
   
   isRefining.value = true
   try {
-    // 模拟润色API调用
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // 智能润色：添加更多实用的指导元素
-    let refinedPrompt = generatedPrompt.value
-    
-    // 在专业要求后添加思维方法指导
-    if (refinedPrompt.includes('# 专业要求')) {
-      refinedPrompt = refinedPrompt.replace(
-        '# 输出格式',
-        `# 思维方法
-请采用以下思维方式来处理任务：
-1. **系统性思考**：全面考虑问题的各个方面和影响因素
-2. **用户导向**：始终以用户需求和体验为中心
-3. **实用性优先**：提供可操作、可执行的具体方案
-4. **持续优化**：考虑长期发展和改进空间
+    // 获取当前角色标题
+    const template = roleTemplates[formData.role]
+    const roleTitle = formData.role === 'custom' ? formData.customRole : template.title
 
-# 输出格式`
-      )
-    }
-    
-    // 在输出格式最后添加质量控制
-    if (refinedPrompt.includes('请开始你的专业回答：')) {
-      refinedPrompt = refinedPrompt.replace(
-        '请开始你的专业回答：',
-        `## ✅ 质量检查
-请在回答前确认：
-- [ ] 内容是否专业准确
-- [ ] 建议是否具体可行
-- [ ] 格式是否清晰易读
-- [ ] 是否满足所有要求
+    // 调用后端 API 进行润色
+    const response = await promptService.optimizePrompt({
+      background: formData.background || '',
+      role: roleTitle,
+      expectation: formData.expectation
+    })
 
-请开始你的专业回答：`
-      )
+    if (response.optimized_prompt) {
+      generatedPrompt.value = response.optimized_prompt
+      message.success('✨ Prompt 润色完成！')
+    } else {
+      throw new Error('润色结果为空')
     }
-    
-    // 如果是编程相关角色，添加代码规范提醒
-    if (formData.role && ['professional-coder', 'fullstack-developer', 'ai-developer', 'devops-engineer'].includes(formData.role)) {
-      refinedPrompt = refinedPrompt.replace(
-        '请开始你的专业回答：',
-        `## 💻 代码规范提醒
-如需提供代码示例，请确保：
-- 代码格式规范，有适当的注释
-- 包含必要的错误处理
-- 考虑安全性和性能
-- 提供测试用例（如适用）
-
-请开始你的专业回答：`
-      )
-    }
-    
-    // 如果是写作相关角色，添加写作质量提醒
-    if (formData.role && ['academic-writer', 'all-around-writer', 'creative-writer', 'copywriter'].includes(formData.role)) {
-      refinedPrompt = refinedPrompt.replace(
-        '请开始你的专业回答：',
-        `## ✍️ 写作质量提醒
-请确保写作内容：
-- 语言准确，表达清晰
-- 逻辑严密，结构合理
-- 符合目标读者的阅读水平
-- 有吸引力和说服力
-
-请开始你的专业回答：`
-      )
-    }
-    
-    generatedPrompt.value = refinedPrompt
-    message.success('✨ Prompt 润色完成！已添加专业指导元素')
   } catch (error) {
+    console.error('Refine error:', error)
     message.error('润色失败，请重试')
   } finally {
     isRefining.value = false
   }
+}
+
+// 添加视图切换状态
+const isMarkdownView = ref(true)
+
+// 计算属性：渲染后的Markdown
+const renderedMarkdown = computed(() => {
+  if (!generatedPrompt.value) return ''
+  return md.render(generatedPrompt.value)
+})
+
+// 切换视图模式
+const toggleView = () => {
+  isMarkdownView.value = !isMarkdownView.value
 }
 </script>
 
@@ -614,12 +624,97 @@ const refinePrompt = async () => {
 }
 
 .prompt-output {
-  max-height: 400px;
+  max-height: 600px;
   overflow-y: auto;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   background-color: #fff;
   border-radius: 4px;
   padding: 12px;
+}
+
+.code-view {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+/* Markdown样式优化 */
+.markdown-body {
+  padding: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+:deep(.markdown-body pre) {
+  background-color: #f6f8fa;
+  border-radius: 6px;
+  padding: 16px;
+  overflow: auto;
+}
+
+:deep(.markdown-body code) {
+  background-color: rgba(175, 184, 193, 0.2);
+  border-radius: 6px;
+  padding: 0.2em 0.4em;
+  font-size: 85%;
+}
+
+:deep(.markdown-body pre code) {
+  background-color: transparent;
+  padding: 0;
+}
+
+:deep(.markdown-body h1) {
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  border-bottom: 1px solid #d0d7de;
+}
+
+:deep(.markdown-body h2) {
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #d0d7de;
+}
+
+:deep(.markdown-body blockquote) {
+  padding: 0 1em;
+  color: #656d76;
+  border-left: 0.25em solid #d0d7de;
+}
+
+:deep(.markdown-body ul),
+:deep(.markdown-body ol) {
+  padding-left: 2em;
+}
+
+:deep(.markdown-body table) {
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+:deep(.markdown-body table th),
+:deep(.markdown-body table td) {
+  padding: 6px 13px;
+  border: 1px solid #d0d7de;
+}
+
+:deep(.markdown-body table tr:nth-child(2n)) {
+  background-color: #f6f8fa;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  .prompt-output {
+    max-height: 400px;
+    padding: 8px;
+  }
+
+  .markdown-body {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  :deep(.markdown-body pre) {
+    padding: 8px;
+  }
 }
 
 .ant-select-selection-item {
@@ -922,6 +1017,103 @@ const refinePrompt = async () => {
   .text-gray-400 {
     font-size: 11px;
     line-height: 1.3;
+  }
+}
+
+/* 代码块样式优化 */
+:deep(.code-block-wrapper) {
+  margin: 1em 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+}
+
+:deep(.code-block-header) {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background: #f1f3f4;
+  border-bottom: 1px solid #e1e4e8;
+}
+
+:deep(.code-lang) {
+  font-size: 12px;
+  font-weight: 600;
+  color: #57606a;
+  text-transform: uppercase;
+}
+
+:deep(.markdown-body pre) {
+  margin: 0;
+  padding: 16px;
+  background-color: #f6f8fa;
+  border-radius: 0 0 8px 8px;
+  overflow-x: auto;
+}
+
+:deep(.markdown-body pre code) {
+  padding: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #24292e;
+  background-color: transparent;
+  border-radius: 0;
+  white-space: pre;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+}
+
+:deep(.hljs) {
+  background: #f6f8fa !important;
+  padding: 0 !important;
+}
+
+/* 代码高亮颜色主题优化 */
+:deep(.hljs-keyword),
+:deep(.hljs-selector-tag),
+:deep(.hljs-subst) {
+  color: #d73a49;
+}
+
+:deep(.hljs-string),
+:deep(.hljs-doctag) {
+  color: #032f62;
+}
+
+:deep(.hljs-title),
+:deep(.hljs-section),
+:deep(.hljs-selector-id) {
+  color: #6f42c1;
+}
+
+:deep(.hljs-comment),
+:deep(.hljs-quote) {
+  color: #6a737d;
+}
+
+:deep(.hljs-number),
+:deep(.hljs-literal) {
+  color: #005cc5;
+}
+
+:deep(.hljs-variable),
+:deep(.hljs-template-variable),
+:deep(.hljs-tag) {
+  color: #22863a;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  :deep(.code-block-header) {
+    padding: 6px 12px;
+  }
+
+  :deep(.markdown-body pre) {
+    padding: 12px;
+  }
+
+  :deep(.markdown-body pre code) {
+    font-size: 12px;
   }
 }
 </style> 
