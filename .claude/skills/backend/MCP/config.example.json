@@ -1,0 +1,14 @@
+{
+  "$schema": "https://github.com/crystaldba/postgres-mcp",
+  "mcpServers": {
+    "postgres_promptwizard": {
+      "command": "uvx",
+      "args": [
+        "postgres-mcp",
+        "--connection-string", "postgresql://promptwizard:password@localhost:5432/promptwizard",
+        "--access-mode", "restricted"
+      ],
+      "description": "PromptWizard PostgreSQL Database"
+    }
+  }
+}
